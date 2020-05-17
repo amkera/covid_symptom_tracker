@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   post '/login' do
     #action = login, method = POST.
     #creating a session. receive login form.
-    binding.pry
+    #params looks like this:
+      #{"email" => "some_user", "password" => "their_password"}
   end
 
 
