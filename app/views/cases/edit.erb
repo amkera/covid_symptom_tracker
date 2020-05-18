@@ -1,1 +1,55 @@
-Edit form goes here 
+<!--form to create new covid case-->
+
+<h2>Edit Covid-19 case</h2>
+
+<form class="" action="/cases/<%= @case.id %>" method="POST">
+  <input type="hidden" name="_method" value="patch" />
+
+  <h4>Below, you can edit Covid-19 symptoms that you are experiencing on a scale from 1 - 10, where 1 is lowest in severity, and 10 is the highest.</h4>
+  <br />
+  <h5>You can read more about each of these symptoms <a href="https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html" target="_blank"> here.</a></h5>
+  <br />
+
+  <div>
+    <label for="name">Cough:</label>
+    <input type="text" name="cough" value="<%= @case.cough %>">
+  </div>
+  <br />
+
+  <div>
+    <label for="name">Difficulty Breathing:</label>
+    <input type="text" name="difficulty_breathing" value="<%=@case.difficulty_breathing%>"/>
+  </div>
+  <br />
+
+  <div>
+    <label for="name">Fever:</label>
+    <input type="text" name="fever" value="<%=@case.fever%>"/>
+  </div>
+  <br />
+  <div>
+    <label for="name">Chills:</label>
+    <input type="text" name="chills" value="<%=@case.chills%>"/>
+  </div>
+  <br />
+  <div>
+    <label for="name">Muscle Pain:</label>
+    <input type="text" name="muscle_pain" value="<%=@case.muscle_pain%>"/>
+  </div>
+  <br />
+  <div>
+    <label for="name">Sore Throat:</label>
+    <input type="text" name="sore_throat" value="<%=@case.sore_throat%>"/>
+  </div>
+  <br />
+
+  <div>
+    <label for="name">Sudden Loss of Taste or Smell:</label>
+    <input type="text" name="smell_or_taste_loss" value="<%=@case.smell_or_taste_loss%>"/>
+  </div>
+  <br />
+
+  <input type="submit" name="submit" value="Create Case" />
+
+
+</form>

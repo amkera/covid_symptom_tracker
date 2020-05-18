@@ -10,7 +10,7 @@ class CasesController < ApplicationController
         redirect '/'
       end
 
-      if (params[:cough] != "" && params[:difficulty_breathing] != "" && params[:fever] != "" && params[:chills] != "" && params[:muscle_pain] != "" && params[:sore_throat] != "" && params[:smell_or_taste_loss] != "")
+      if (params[:cough].between?(1,10) && params[:difficulty_breathing].between?(1,10) && params[:fever].between?(1,10) && params[:chills].between?(1,10) && params[:muscle_pain].between?(1,10) && params[:sore_throat].between?(1,10) && params[:smell_or_taste_loss].between?(1,10))
         @case = Case.create(
           cough: params[:cough],
           difficulty_breathing: params[:difficulty_breathing],
@@ -35,8 +35,9 @@ class CasesController < ApplicationController
   end
 
   get '/cases/:id/edit' do #take user to cases/edit.erb & render edit form
+    @case = Case.find(params[:id])
     erb :'/cases/edit'
-  end 
+  end
 
 
 
