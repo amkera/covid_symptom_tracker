@@ -41,8 +41,7 @@ class CasesController < ApplicationController
 
   patch '/cases/:id' do
     set_case
-    @case = Case.update(
-      cough: params[:cough],
+    @case.update(cough: params[:cough],
       difficulty_breathing: params[:difficulty_breathing],
       fever: params[:fever],
       chills: params[:chills],
