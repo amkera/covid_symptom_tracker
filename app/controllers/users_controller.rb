@@ -24,10 +24,11 @@ class UsersController < ApplicationController
       redirect "/users/#{@user.id}"
       #this is the actual URL, the HTTP request. Rarely render from a post, patch, or delete request.
     end
-  end 
+  end
 
   get '/users/:id' do
-    erb :"/users/show"
+    @user = User.find_by(id: params[:id])
+    erb :'/users/show'
     #we usually render in get requests
   end
 
