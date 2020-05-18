@@ -29,10 +29,15 @@ class CasesController < ApplicationController
 
   get '/cases/:id' do
     #raise params.inspect
-    #show/render a specific case, to have access to this instance variable. 
+    #show/render a specific case, to have access to this instance variable.
     @case = Case.find(params[:id])
     erb :'/cases/show'
   end
+
+  get '/cases/:id/edit' do #take user to cases/edit.erb & render edit form
+    erb :'/cases/edit'
+  end 
+
 
 
 end
