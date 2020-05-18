@@ -1,7 +1,5 @@
 class CasesController < ApplicationController
   #render the form to create a new entry
-
-
   get '/cases/new' do
     erb :'/cases/new'
   end
@@ -29,28 +27,42 @@ class CasesController < ApplicationController
       end
   end
 
-  get '/cases/:id' do #show/render a specific case, to have access to this instance variable.
-    set_case
+  get '/cases/:id' do #show/render a specific case
     erb :'/cases/show'
   end
 
   get '/cases/:id/edit' do #take user to cases/edit.erb & render edit form
     set_case
-    erb :'/cases/edit'
+    if logged_in?
+      if @case.user == current_user
+        erb :'/cases/edit'
+      else
+        redirect "/users#{current_user.id}"
+      end
+    else
+      redirect '/'
+    end
   end
 
   patch '/cases/:id' do
     set_case
-    @case.update(cough: params[:cough],
-      difficulty_breathing: params[:difficulty_breathing],
-      fever: params[:fever],
-      chills: params[:chills],
-      muscle_pain: params[:muscle_pain],
-      sore_throat: params[:sore_throat],
-      smell_or_taste_loss: params[:smell_or_taste_loss])
-    redirect "/cases/#{@case.id}"
-  end
-
+    if logged_in?
+      if @case.user == current_user
+        @case.update(cough: params[:cough],
+          difficulty_breathing: params[:difficulty_breathing],
+          fever: params[:fever],
+          chills: params[:chills],
+          muscle_pain: params[:muscle_pain],
+          sore_throat: params[:sore_throat],
+          smell_or_taste_loss: params[:smell_or_taste_loss])
+        redirect "/cases/#{@case.id}"
+      else
+        redirect "/users/#{current_user.id}"
+      end
+    else
+      redirect '/'
+    end
+  end 
 
   private
   def set_case
