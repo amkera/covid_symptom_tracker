@@ -4,11 +4,8 @@ class CasesController < ApplicationController
     erb :'/cases/new'
   end
 
-  post '/cases' do
+  post '/cases' do #CREATE a new case and save it to the database
     #raise params.inspect
-    #create a new case and save it to the database
-      #only if all symptoms are accounted for
-      #and if a user is logged in
       if !logged_in?
         redirect '/'
       end
@@ -29,4 +26,13 @@ class CasesController < ApplicationController
         redirect '/cases/new'
       end
   end
+
+  get '/cases/:id' do
+    #raise params.inspect
+    #show/render a specific case, to have access to this instance variable. 
+    @case = Case.find(params[:id])
+    erb :'/cases/show'
+  end
+
+
 end
