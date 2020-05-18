@@ -32,5 +32,10 @@ class UsersController < ApplicationController
     #we usually render in get requests
   end
 
+  get '/logout' do
+    session.clear
+    redirect '/'
+  end 
+
 
 end
