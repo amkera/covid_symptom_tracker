@@ -21,8 +21,12 @@ class UsersController < ApplicationController
     #create a new user and persist them to db if valid input
     if params[:name] != "" && params[:email] != "" && params[:password] != ""
       @user = User.create(params)
+      session[:user_id] = @user.id #logs user in once they create a profile
       redirect "/users/#{@user.id}"
       #this is the actual URL, the HTTP request. Rarely render from a post, patch, or delete request.
+    else
+      redirect '/signup'
+      #stretch feature: include message telling user they entered bad data
     end
   end
 
@@ -35,7 +39,7 @@ class UsersController < ApplicationController
   get '/logout' do
     session.clear
     redirect '/'
-  end 
+  end
 
 
 end
