@@ -1,11 +1,16 @@
 class CasesController < ApplicationController
   #render the form to create a new entry
+
+  get '/cases' do
+    @cases = Case.all
+    erb :'/cases/index'
+  end
+
   get '/cases/new' do
     erb :'/cases/new'
   end
 
   post '/cases' do #CREATE a new case and save it to the database
-    #raise params.inspect
       if !logged_in?
         redirect '/'
       end
@@ -28,6 +33,7 @@ class CasesController < ApplicationController
   end
 
   get '/cases/:id' do #show/render a specific case
+    set_case
     erb :'/cases/show'
   end
 
@@ -62,7 +68,7 @@ class CasesController < ApplicationController
     else
       redirect '/'
     end
-  end 
+  end
 
   private
   def set_case
