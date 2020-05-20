@@ -37,7 +37,7 @@ class CasesController < ApplicationController
           )
           redirect "/cases/#{@case.id}"
       else
-        flash[:message] = "Something went wrong! Please rate your symptoms on a scale from 1-10, inclusive."
+        flash[:errors] = "Something went wrong! Please rate your symptoms on a scale from 1-10, inclusive."
         redirect '/cases/new'
       end
   end
@@ -84,6 +84,7 @@ class CasesController < ApplicationController
     set_case
     if @case.user == current_user
       @case.destroy
+      flash[:message] = "Case has been successfully deleted."
       redirect '/cases'
     else
       redirect '/cases'
