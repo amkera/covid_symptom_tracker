@@ -70,9 +70,21 @@ class CasesController < ApplicationController
     end
   end
 
+  delete '/cases/:id' do #this method will not show anything, which is why redirect is needed
+    set_case
+    if @case.user == current_user
+      @case.destroy
+      redirect '/cases'
+    else
+      redirect '/cases'
+    end
+  end
+
+
   private
   def set_case
     @case = Case.find(params[:id])
+    #finds the case based on its id in the params
   end
 
 

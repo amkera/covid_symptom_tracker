@@ -1,4 +1,4 @@
-<h1>Your Cases</h1>
+<h1>All Cases</h1>
 <br />
 
 <p>Cough: <%=@case.cough%></p><br />
@@ -9,9 +9,23 @@
 <p>Sore Throat: <%=@case.sore_throat%></p><br />
 <p>Sudden Loss of Taste or Smell: <%=@case.smell_or_taste_loss%></p><br />
 
-<!--Edit-->
+<!--Edit only if user is the owner of this case-->
 <br />
-<a href="/cases/<%=@case.id%>/edit">Edit This Case</a>
+
+<%if @case.user == current_user%>
+  <a href="/cases/new">New Case</a><br />
+  <a href="/cases/<%=@case.id%>/edit">Edit Case</a><br />
+
+  <form action="/cases/<%=@case.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE" />
+    <input type="submit" name="" value="Delete Case" />
+  </form>
+
+<%end%>
+
+
+
+
+
 
 <!--Delete-->
-<a href="/cases/<%=@case.id%>/delete">Delete Case</a>
