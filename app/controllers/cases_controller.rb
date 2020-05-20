@@ -61,7 +61,7 @@ class CasesController < ApplicationController
   patch '/cases/:id' do
     set_case
     if logged_in?
-      if @case.user == current_user
+      if @case.user == current_user && params[:cough] != "" && params[:difficulty_breathing] != "" && params[:fever] != "" && params[:chills] != "" && params[:muscle_pain] != "" && params[:sore_throat] != "" && params[:smell_or_taste_loss] != ""
         @case.update(cough: params[:cough],
           difficulty_breathing: params[:difficulty_breathing],
           fever: params[:fever],
