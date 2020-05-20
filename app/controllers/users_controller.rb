@@ -10,9 +10,11 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:password])
       #forces user to not log in with nil data
       session[:user_id] = @user.id
+      flash[:message] = "Welcome, #{@user.name}."
       redirect "/users/#{@user.id}"
+      #the show page
     else
-      flash[:message] = "Invalid credentials! Please sign up, or try again."
+      flash[:errors] = "Invalid credentials! Please sign up, or try again."
       redirect '/login'
     end
   end
