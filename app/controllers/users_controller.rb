@@ -23,22 +23,18 @@ class UsersController < ApplicationController
   end
 
   post '/users' do
-    if params[:name] != "" && params[:email] != "" && params[:password] != ""
-      @user = User.create(name: params[:name], email: params[:email], password: params[:password])
-      if @user.save
-        session[:user_id] = @user.id #logs user in once they create a profile
-        flash[:message] = "Welcome, #{@user.name}. You have successfully created an account."
-        redirect "/users/#{@user.id}"
-      else
-        flash[:errors] = "Account was not successfully created. Name, email, and password are required fields."
-        redirect '/signup'
-      end
+    @user = User.new(name: params[:name], email: params[:email], password: params[:password])
+    if @user.save
+      session[:user_id] = @user.id #logs user in once they create a profile
+      flash[:message] = "Welcome, #{@user.name}. You have successfully created an account."
+      redirect "/users/#{@user.id}"
     else
-      flash[:errors] = "Account was not successfully created. Name, email, and password are required fields."
+      flash[:errors] = "Account was not successfully created. #{@user.errors.full_messages.to_sentence}."
       redirect '/signup'
     end
-      #stretch feature: include message telling user they entered bad data
   end
+
+      
 
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
