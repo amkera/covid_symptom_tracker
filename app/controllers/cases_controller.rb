@@ -19,13 +19,10 @@ class CasesController < ApplicationController
   end
 
   post '/cases' do #CREATE a new case and save it to the database
-      if !logged_in?
-        redirect '/'
-      end
-
-      if (params[:cough].to_i.between?(1,10) && params[:difficulty_breathing].to_i.between?(1,10) && params[:fever].to_i.between?(1,10) && params[:chills].to_i.between?(1,10) && params[:muscle_pain].to_i.between?(1,10) && params[:sore_throat].to_i.between?(1,10) && params[:smell_or_taste_loss].to_i.between?(1,10))
-        flash[:message] = "Your case has been successfully created."
-        @case = Case.create(
+    redirect_if_not_logged_in
+    if (params[:cough].to_i.between?(1,10) && params[:difficulty_breathing].to_i.between?(1,10) && params[:fever].to_i.between?(1,10) && params[:chills].to_i.between?(1,10) && params[:muscle_pain].to_i.between?(1,10) && params[:sore_throat].to_i.between?(1,10) && params[:smell_or_taste_loss].to_i.between?(1,10))
+      flash[:message] = "Your case has been successfully created."
+      @case = Case.create(
           cough: params[:cough],
           difficulty_breathing: params[:difficulty_breathing],
           fever: params[:fever],
@@ -35,11 +32,11 @@ class CasesController < ApplicationController
           smell_or_taste_loss: params[:smell_or_taste_loss],
           user_id: current_user.id
           )
-          redirect "/cases/#{@case.id}"
-      else
-        flash[:errors] = "Something went wrong! Please rate your symptoms on a scale from 1-10, inclusive."
-        redirect '/cases/new'
-      end
+      redirect "/cases/#{@case.id}"
+    else
+      flash[:errors] = "Something went wrong! Please rate your symptoms on a scale from 1-10, inclusive."
+      redirect '/cases/new'
+    end
   end
 
   get '/cases/:id' do #show/render a specific case
@@ -71,7 +68,7 @@ class CasesController < ApplicationController
       redirect "/cases/#{@case.id}"
     else
       redirect "/users/#{current_user.id}"
-    end 
+    end
   end
 
   delete '/cases/:id' do #this method will not show anything, which is why redirect is needed
