@@ -32,9 +32,10 @@ class UsersController < ApplicationController
       flash[:errors] = "Account was not successfully created. #{@user.errors.full_messages.to_sentence}."
       redirect '/signup'
     end
+    #this is a stretch feature
   end
 
-      
+
 
   get '/users/:id' do
     @user = User.find_by(id: params[:id])
