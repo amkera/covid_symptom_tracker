@@ -15,9 +15,11 @@
   </head>
   <body>
     <div class="nav">
-      <a href='/cases/new'>Create Case</a><br /><br />
-      <a href='/cases'>View All Cases</a><br /><br />
-      <a href='/logout'>Log Out</a>
+      <%if logged_in>%>
+        <a href='/cases/new'>Create Case</a><br /><br />
+        <a href='/cases'>View All Cases</a><br /><br />
+        <a href='/logout'>Log Out</a>
+      <%end%>
       <br />
     </div>
     <div class="wrapper">

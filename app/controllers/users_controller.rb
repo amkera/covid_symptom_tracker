@@ -10,13 +10,14 @@ class UsersController < ApplicationController
     if @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect "/users/#{@user.id}"
+    else
+      redirect '/login'
     end
   end
 
   get '/signup' do #render the signup form
     erb :signup
   end
-
 
   post '/users' do
     #create a new user and persist them to db if valid input
