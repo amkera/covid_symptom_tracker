@@ -2,13 +2,12 @@ class UsersController < ApplicationController
 
 
   get '/login' do
-    erb :login #render the login form/page
+    erb :login
   end
 
   post '/login' do
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
-      #forces user to not log in with nil data
       session[:user_id] = @user.id
       flash[:message] = "Welcome, #{@user.name}."
       redirect "/users/#{@user.id}"
@@ -19,7 +18,7 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/signup' do #render the signup form
+  get '/signup' do
     erb :signup
   end
 
@@ -30,8 +29,6 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id #logs user in once they create a profile
         flash[:message] = "Welcome, #{@user.name}. You have successfully created an account."
         redirect "/users/#{@user.id}"
-      #this is the actual URL, the HTTP request. Rarely render from a post, patch, or delete request.
-      #most of the time flash messages are written inside post, patch, or delete requests.
       else
         flash[:errors] = "Account was not successfully created. Name, email, and password are required fields."
         redirect '/signup'

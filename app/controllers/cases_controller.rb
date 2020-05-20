@@ -38,7 +38,6 @@ class CasesController < ApplicationController
           redirect "/cases/#{@case.id}"
       else
         flash[:message] = "Something went wrong! Please rate your symptoms on a scale from 1-10, inclusive."
-        #note: flash messages cannot be used inside routes with an erb :
         redirect '/cases/new'
       end
   end
@@ -95,7 +94,7 @@ class CasesController < ApplicationController
   private
   def set_case
     @case = Case.find(params[:id])
-    #finds the case based on its id in the params
+    #helper method that finds the case based on its id in the params
   end
 
 
