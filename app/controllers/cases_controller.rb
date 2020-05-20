@@ -2,12 +2,20 @@ class CasesController < ApplicationController
   #render the form to create a new entry
 
   get '/cases' do
-    @cases = Case.all
-    erb :'/cases/index'
+    if logged_in?
+      @cases = Case.all
+      erb :'/cases/index'
+    else
+      redirect '/'
+    end
   end
 
   get '/cases/new' do
-    erb :'/cases/new'
+    if logged_in?
+      erb :'/cases/new'
+    else
+      redirect '/'
+    end
   end
 
   post '/cases' do #CREATE a new case and save it to the database
