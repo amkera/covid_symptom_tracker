@@ -24,6 +24,7 @@ class CasesController < ApplicationController
       end
 
       if (params[:cough].to_i.between?(1,10) && params[:difficulty_breathing].to_i.between?(1,10) && params[:fever].to_i.between?(1,10) && params[:chills].to_i.between?(1,10) && params[:muscle_pain].to_i.between?(1,10) && params[:sore_throat].to_i.between?(1,10) && params[:smell_or_taste_loss].to_i.between?(1,10))
+        flash[:message] = "Your case has been successfully created."
         @case = Case.create(
           cough: params[:cough],
           difficulty_breathing: params[:difficulty_breathing],
@@ -36,6 +37,8 @@ class CasesController < ApplicationController
           )
           redirect "/cases/#{@case.id}"
       else
+        flash[:message] = "Something went wrong! Please rate your symptoms on a scale from 1-10, inclusive."
+        #note: flash messages cannot be used inside routes with an erb :
         redirect '/cases/new'
       end
   end
