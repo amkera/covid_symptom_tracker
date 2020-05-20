@@ -49,35 +49,29 @@ class CasesController < ApplicationController
 
   get '/cases/:id/edit' do #take user to cases/edit.erb & render edit form
     set_case
-    if logged_in?
-      if @case.user == current_user
-        erb :'/cases/edit'
-      else
-        redirect "/users#{current_user.id}"
-      end
+    redirect_if_not_logged_in
+    if @case.user == current_user
+      erb :'/cases/edit'
     else
-      redirect '/'
+      redirect "/users#{current_user.id}"
     end
   end
 
   patch '/cases/:id' do
     set_case
-    if logged_in?
-      if @case.user == current_user && params[:cough] != "" && params[:difficulty_breathing] != "" && params[:fever] != "" && params[:chills] != "" && params[:muscle_pain] != "" && params[:sore_throat] != "" && params[:smell_or_taste_loss] != ""
-        @case.update(cough: params[:cough],
-          difficulty_breathing: params[:difficulty_breathing],
-          fever: params[:fever],
-          chills: params[:chills],
-          muscle_pain: params[:muscle_pain],
-          sore_throat: params[:sore_throat],
-          smell_or_taste_loss: params[:smell_or_taste_loss])
-        redirect "/cases/#{@case.id}"
-      else
-        redirect "/users/#{current_user.id}"
-      end
+    redirect_if_not_logged_in
+    if @case.user == current_user && params[:cough] != "" && params[:difficulty_breathing] != "" && params[:fever] != "" && params[:chills] != "" && params[:muscle_pain] != "" && params[:sore_throat] != "" && params[:smell_or_taste_loss] != ""
+      @case.update(cough: params[:cough],
+        difficulty_breathing: params[:difficulty_breathing],
+        fever: params[:fever],
+        chills: params[:chills],
+        muscle_pain: params[:muscle_pain],
+        sore_throat: params[:sore_throat],
+        smell_or_taste_loss: params[:smell_or_taste_loss])
+      redirect "/cases/#{@case.id}"
     else
-      redirect '/'
-    end
+      redirect "/users/#{current_user.id}"
+    end 
   end
 
   delete '/cases/:id' do #this method will not show anything, which is why redirect is needed
