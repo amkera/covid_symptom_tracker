@@ -1,14 +1,19 @@
-<h1>All Cases</h1><br />
+<h1>Your Cases</h1><br />
 <% @cases.each do |patient_case| %>
-  <h4>Created at: <a href="/cases/<%= patient_case.id %>"><%= patient_case.pleasant_time %></a></h4><br />
-  <p>Cough:<%= patient_case.cough %></p>
-  <p>Difficulty Breathing: <%= patient_case.difficulty_breathing %></p>
-  <p>Fever: <%= patient_case.fever %></p>
-  <p>Chills: <%= patient_case.chills %></p>
-  <p>Muscle Pain: <%= patient_case.muscle_pain %></p>
-  <p>Sore Throat: <%= patient_case.sore_throat %></p>
-  <p>Sudden Loss of Taste or Smell: <%= patient_case.smell_or_taste_loss %></p>
+  <%if patient_case.user == current_user%> <!--logic so that a user can ONLY view their own cases-->
+    <h3>Created on: <%= patient_case.pleasant_time %></h3><br />
 
-  <p>Created By: <strong><%= patient_case.user.name %></strong></p>
-  <br><br>
+    <p>Cough:<%= patient_case.cough %></p>
+    <p>Difficulty Breathing: <%= patient_case.difficulty_breathing %></p>
+    <p>Fever: <%= patient_case.fever %></p>
+    <p>Chills: <%= patient_case.chills %></p>
+    <p>Muscle Pain: <%= patient_case.muscle_pain %></p>
+    <p>Sore Throat: <%= patient_case.sore_throat %></p>
+    <p>Sudden Loss of Taste or Smell: <%= patient_case.smell_or_taste_loss %></p>
+    <p>Created By: <strong><%= patient_case.user.name %></strong></p>
+    <p>
+      <a href="/cases/<%= patient_case.id %>">Edit or Delete Here</a><br />
+
+      </p>
+  <% end %>
 <% end %>

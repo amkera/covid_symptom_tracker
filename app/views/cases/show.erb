@@ -1,4 +1,4 @@
-<h1>All Cases</h1>
+<h1>Case Created On: <%=@case.pleasant_time%></h1>
 <br />
 
 <p>Cough: <%=@case.cough%></p><br />
@@ -13,8 +13,8 @@
 <br />
 
 <%if @case.user == current_user%>
-  <a href="/cases/new">New Case</a><br />
-  <a href="/cases/<%=@case.id%>/edit">Edit Case</a><br />
+  <a href="/cases/new">Create New Case</a> <br />
+  <a href="/cases/<%=@case.id%>/edit">Edit This Case</a><br /><br />
 
   <form action="/cases/<%=@case.id%>" method="POST">
     <input type="hidden" name="_method" value="DELETE" />
