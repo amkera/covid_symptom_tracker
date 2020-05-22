@@ -12,14 +12,14 @@
   }
 
   body {
-    background-color: rgb(201, 173, 167);
+    background-color: rgb(132, 169, 140);
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
   }
 
   .wrapper {
-    background: rgb(242, 233, 228);
+    background: rgb(202, 210, 197);
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
     -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
     box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -30,10 +30,37 @@
   }
 
   h1 {
-    font-size: 36px;
+    font-size: 40px;
     line-height: 40px;
+    text-align: center;
   }
 
-/*https://coolors.co/22223b-4a4e69-9a8c98-c9ada7-f2e9e4 */
+  h4 {
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+  }
+
+
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  
 
 }
