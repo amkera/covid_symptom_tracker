@@ -24,12 +24,12 @@
 
     <div class="topnav">
       <%if @case.user == current_user%>
-        
+
         <a href="/cases/<%=@case.id%>/edit">Edit This Case</a>
 
         <form action="/cases/<%=@case.id%>" method="POST">
           <input type="hidden" name="_method" value="DELETE" />
-          <input type="submit" name="" value="Delete Case" />
+          <input type="submit" class=delete_button name="" value="Delete Case" />
         </form>
 
       <%end%>
