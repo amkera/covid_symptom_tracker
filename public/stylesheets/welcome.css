@@ -68,6 +68,19 @@
     color: black;
   }
 
+  input[class=delete_button] {
+    background-color: rgb(221, 76, 19);
+    color: white;
+    padding: 7px 24px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
 
 
 }
