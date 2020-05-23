@@ -1,21 +1,43 @@
-<h1>Your Cases</h1><br />
-<% @cases.each do |patient_case| %>
-  <%if patient_case.user == current_user%> <!--logic so that a user can ONLY view their own cases-->
-    <h3>Created on: <%= patient_case.pleasant_time %></h3><br />
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <title>Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/welcome.css" />
+  </head>
+  <body>
+    <h1>Your Cases</h1><br />
+    <% @cases.each do |patient_case| %>
+      <%if patient_case.user == current_user%> <!--logic so that a user can ONLY view their own cases-->
+        <h3>Created on: <%= patient_case.pleasant_time %></h3><br />
 
-    <p>Cough:<%= patient_case.cough %></p>
-    <p>Difficulty Breathing: <%= patient_case.difficulty_breathing %></p>
-    <p>Fever: <%= patient_case.fever %></p>
-    <p>Chills: <%= patient_case.chills %></p>
-    <p>Muscle Pain: <%= patient_case.muscle_pain %></p>
-    <p>Sore Throat: <%= patient_case.sore_throat %></p>
-    <p>Sudden Loss of Taste or Smell: <%= patient_case.smell_or_taste_loss %></p>
-    <p>Created By: <strong><%= patient_case.user.name %></strong></p>
-    <p>
-      <a href="/cases/<%= patient_case.id %>">Edit or Delete Here</a><br />
+        <p>Cough:<%= patient_case.cough %></p>
+        <p>Difficulty Breathing: <%= patient_case.difficulty_breathing %></p>
+        <p>Fever: <%= patient_case.fever %></p>
+        <p>Chills: <%= patient_case.chills %></p>
+        <p>Muscle Pain: <%= patient_case.muscle_pain %></p>
+        <p>Sore Throat: <%= patient_case.sore_throat %></p>
+        <p>Sudden Loss of Taste or Smell: <%= patient_case.smell_or_taste_loss %></p>
+        <p>Created By: <strong><%= patient_case.user.name %></strong></p><br />
+        <p>
+          <div class="topnav">
+            <a href="/cases/<%= patient_case.id %>">Edit or Delete Here</a><br />
+          </div>
 
-      </p>
-  <% end %>
-<% end %>
+
+
+      <% end %>
+    <% end %>
+
+
+
+  </body>
+
+
+
+
+
 
 <!--to enable users to view ALL cases, not only their own, line 3 and 18 can be removed"

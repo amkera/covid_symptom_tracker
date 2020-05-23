@@ -1,31 +1,41 @@
-<h1>Case Created On: <%=@case.pleasant_time%></h1>
-<br />
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <title>Welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/welcome.css" />
+  </head>
+  <body>
+    <h2>Case Created On: <%=@case.pleasant_time%></h2>
+    <br />
 
-<p>Cough: <%=@case.cough%></p><br />
-<p>Difficulty Breathing: <%=@case.difficulty_breathing%></p><br />
-<p>Fever: <%=@case.fever%></p><br />
-<p>Chills: <%=@case.chills%></p><br />
-<p>Muscle Pain: <%=@case.muscle_pain%></p><br />
-<p>Sore Throat: <%=@case.sore_throat%></p><br />
-<p>Sudden Loss of Taste or Smell: <%=@case.smell_or_taste_loss%></p><br />
+    <p>Cough: <%=@case.cough%></p><br />
+    <p>Difficulty Breathing: <%=@case.difficulty_breathing%></p><br />
+    <p>Fever: <%=@case.fever%></p><br />
+    <p>Chills: <%=@case.chills%></p><br />
+    <p>Muscle Pain: <%=@case.muscle_pain%></p><br />
+    <p>Sore Throat: <%=@case.sore_throat%></p><br />
+    <p>Sudden Loss of Taste or Smell: <%=@case.smell_or_taste_loss%></p><br />
 
-<!--Edit only if user is the owner of this case-->
-<br />
+    <!--Edit only if user is the owner of this case-->
+    <br />
 
-<%if @case.user == current_user%>
-  <a href="/cases/new">Create New Case</a> <br />
-  <a href="/cases/<%=@case.id%>/edit">Edit This Case</a><br /><br />
+    <div class="topnav">
+      <%if @case.user == current_user%>
+        
+        <a href="/cases/<%=@case.id%>/edit">Edit This Case</a>
 
-  <form action="/cases/<%=@case.id%>" method="POST">
-    <input type="hidden" name="_method" value="DELETE" />
-    <input type="submit" name="" value="Delete Case" />
-  </form>
+        <form action="/cases/<%=@case.id%>" method="POST">
+          <input type="hidden" name="_method" value="DELETE" />
+          <input type="submit" name="" value="Delete Case" />
+        </form>
 
-<%end%>
+      <%end%>
 
-
-
-
+    </div>
 
 
-<!--Delete-->
+
+  </body>
