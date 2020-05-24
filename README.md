@@ -4,6 +4,18 @@ The Covid-19 Symptom Tracker is a Model-View-Controller Sinatra application that
 
 The symptoms are accurately captured as defined by the CDC, and can be referenced here: https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/symptoms.html
 
+
+Installation:
+
+Fork and clone repo to your local machine.
+From the command line, run `rvm use  "2.5.5"`
+Use 'bundle install' to install dependencies.
+
+Usage:
+
+Run `rake db:mirgrate` from the command line after changing directories into this application.
+Run `shotgun` from the command line. Then you can go to your browser and type `localhost:9393` into your search bar and view the application.
+
 License: Copyright <2020> <amkera>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
