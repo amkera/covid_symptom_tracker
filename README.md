@@ -13,7 +13,7 @@ Use 'bundle install' to install dependencies.
 
 Usage:
 
-Run `rake db:mirgrate` from the command line after changing directories into this application.
+Run `rake db:migrate` from the command line after changing directories into this application.
 Run `shotgun` from the command line. Then you can go to your browser and type `localhost:9393` into your search bar and view the application.
 
 License: Copyright <2020> <amkera>
