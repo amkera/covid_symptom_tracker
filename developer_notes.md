@@ -29,6 +29,9 @@ The new case form is rendered only if the user is logged in. The new case form h
 
 The post request processes the data the user entered. It checks the data is entered correctly, it instantiates a new case, and redirects them to the cases/show page where user can see the case they just created. The next method is a get request that renders the page where a user can see the case they just created. The id becomes part of the url.
 
+View Case
+User can only view their own cases. There is some logic ensuring this in the cases/index file. 
+
 Update Case
 Edit form is rendered only if the user is logged in and the case is found by its id in the params hash. Edit form's action is dynamic: <form class="" action="/cases/<%= @case.id %>" method="POST">
 When this is submitted, a PATCH request is sent and then processed by the cases controller. ActiveRecord's update method is called.
