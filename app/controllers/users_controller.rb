@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-
-
+  #render the login page
   get '/login' do
     erb :login
   end
@@ -25,14 +24,13 @@ class UsersController < ApplicationController
   post '/users' do
     @user = User.new(name: params[:name], email: params[:email], password: params[:password])
     if @user.save
-      session[:user_id] = @user.id #logs user in once they create a profile
+      session[:user_id] = @user.id
       flash[:message] = "Welcome, #{@user.name}. You have successfully created an account."
       redirect "/users/#{@user.id}"
     else
       flash[:errors] = "Account was not successfully created. #{@user.errors.full_messages.to_sentence}."
       redirect '/signup'
     end
-    #this is a stretch feature
   end
 
 
@@ -40,7 +38,6 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     redirect_if_not_logged_in
     erb :'/users/show'
-    #we usually render in get requests
   end
 
   get '/logout' do
