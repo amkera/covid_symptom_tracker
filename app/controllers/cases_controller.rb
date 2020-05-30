@@ -51,6 +51,7 @@ class CasesController < ApplicationController
       erb :'/cases/edit'
     else
       redirect "/users#{current_user.id}"
+      #redirect to user show page
     end
   end
 
@@ -66,12 +67,14 @@ class CasesController < ApplicationController
         sore_throat: params[:sore_throat],
         smell_or_taste_loss: params[:smell_or_taste_loss])
       redirect "/cases/#{@case.id}"
+      #show the case that was just edited
     else
       redirect "/users/#{current_user.id}"
+      #redirect to user show page
     end
   end
 
-  delete '/cases/:id' do #this method will not show anything, which is why redirect is needed
+  delete '/cases/:id' do
     set_case
     if @case.user == current_user
       @case.destroy
