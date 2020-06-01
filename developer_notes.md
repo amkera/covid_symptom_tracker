@@ -30,7 +30,7 @@ The new case form is rendered only if the user is logged in. The new case form h
 The post request processes the data the user entered. It checks the data is entered correctly, it instantiates a new case, and redirects them to the cases/show page where user can see the case they just created. The next method is a get request that renders the page where a user can see the case they just created. The id becomes part of the url.
 
 View Case
-User can only view their own cases. There is some logic ensuring this in the cases/index file. 
+User can only view their own cases. There is some logic ensuring this in the cases/index file.
 
 Update Case
 Edit form is rendered only if the user is logged in and the case is found by its id in the params hash. Edit form's action is dynamic: <form class="" action="/cases/<%= @case.id %>" method="POST">
@@ -38,3 +38,21 @@ When this is submitted, a PATCH request is sent and then processed by the cases 
 
 Delete Case
 This method will not show anything, which is why redirect is needed. This is also a dynamic route: delete '/cases/:id' so that the correct case with the appropriate id is deleted. If the user of the case is the same as the current_user as defined in the helper method, the case can be deleted.
+
+
+
+
+4 VERBS:
+GET - "gets" information from the server
+POST - "posts" information to the server
+PATCH - "updates" existing information
+DELETE - "destroys" or "deletes" existing information
+
+7 ROUTES:
+INDEX - 'GET', displays ALL user's cases
+NEW - 'GET', show the form to create a new case
+CREATE - 'POST', create & persist a new case, and redirect
+SHOW - 'GET', show info about one particular case
+EDIT - 'GET', show the form where user can edit a case
+UPDATE - 'PATCH', update a case, and redirect
+DESTROY / DELETE - 'DELETE', delete a case and redirect 
