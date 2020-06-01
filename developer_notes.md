@@ -41,7 +41,6 @@ This method will not show anything, which is why redirect is needed. This is als
 
 
 
-
 4 VERBS:
 GET - "gets" information from the server
 POST - "posts" information to the server
@@ -55,4 +54,4 @@ CREATE - 'POST', create & persist a new case, and redirect
 SHOW - 'GET', show info about one particular case
 EDIT - 'GET', show the form where user can edit a case
 UPDATE - 'PATCH', update a case, and redirect
-DESTROY / DELETE - 'DELETE', delete a case and redirect 
+DESTROY / DELETE - 'DELETE', delete a case and redirect
