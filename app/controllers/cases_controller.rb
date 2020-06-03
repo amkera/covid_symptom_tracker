@@ -58,7 +58,7 @@ class CasesController < ApplicationController
   patch '/cases/:id' do
     set_case
     redirect_if_not_logged_in
-    if
+    if @case.user == current_user
       @case.update(cough: params[:cough],
         difficulty_breathing: params[:difficulty_breathing],
         fever: params[:fever],
