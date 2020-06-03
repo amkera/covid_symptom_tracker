@@ -34,7 +34,7 @@ class CasesController < ApplicationController
           )
       redirect "/cases/#{@case.id}"
     else
-      flash[:errors] = "Something went wrong! Please rate your symptoms on a scale from 1-10, inclusive."
+      flash[:errors] = "Something went wrong! Please rate your symptoms on a scale from 1-10, inclusive. Any decimals will be rounded down."
       redirect '/cases/new'
     end
   end

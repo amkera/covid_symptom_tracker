@@ -23,11 +23,12 @@ class ApplicationController < Sinatra::Base
     def logged_in?
       !!current_user
     end
-    #converts value to a boolean
+    #converts value to boolean
 
     def current_user
       @current_user ||= User.find_by(id: session[:user_id])
     end
+    #right side not evaluated if left side returns true
 
     def redirect_if_not_logged_in
       if !logged_in?
