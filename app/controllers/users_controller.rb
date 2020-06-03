@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       flash[:message] = "Welcome, #{@user.name}."
       redirect "/users/#{@user.id}"
-      #the show page
+      #their show page
     else
       flash[:errors] = "Invalid credentials! Please sign up, or try again."
       redirect '/login'
