@@ -5,3 +5,5 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   has_many :cases
 end
+
+#validates is a method ActiveRecord gives you
